@@ -11,14 +11,14 @@ struct RetrieveView: View {
 
     
     //MARK: MVP - Part III
-    
+    @AppStorage("number1") var number1: Int = 0
     
     
     
     
     //MARK: Stretch #1 - Part III
-    
-    
+    @AppStorage("url1") var url1 = URL(string: "https://www.apple.com")!
+
     
     
     
@@ -29,7 +29,7 @@ struct RetrieveView: View {
                 HStack {
                     Text("Number1: ")
                     //TODO: MVP
-//                    Text("\(number1)")
+                    Text("\(number1)")
                 }
                 HStack {
                     Text("Number2: ")
@@ -40,7 +40,7 @@ struct RetrieveView: View {
             Group {
                 TitleView(name: "Stretch #1")
                 //TODO: Stretch #1
-//                Link("Load URL #1", destination: url1)
+                Link("Load URL #1", destination: url1)
                 Link("Load URL #2", destination: url2)
             }
            
@@ -72,13 +72,13 @@ struct RetrieveView: View {
         .font(.title)
         .onAppear(perform: {
             //MARK: MVP - Part IV
-
+            let retrievedNumber2 = UserDefaults.standard.integer(forKey: "number2")
 
 
 
             
             //MARK: Stretch #1 - Part IV
-            
+            let retrievedURL2 = UserDefaults.standard.url(forKey: "url2") ?? URL(string: "https://www.apple.com")!
             
             
             
