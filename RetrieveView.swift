@@ -84,13 +84,22 @@ struct RetrieveView: View {
             
             
             //MARK: Stretch #2 - Part II
-            
+            if let savedDoubleArray = UserDefaults.standard.array(forKey: "savedDoubleArray") as? [Double]{
+                
+            }
             
             
             
             
             //MARK: Stretch #3 - Part II
-            
+            if let data = UserDefaults.standard.data(forKey: "contactKey") {
+                let decoder = JSONDecoder()
+                if let decodedContact = try? decoder.decode(Contact.self, from: data) {
+                    name = decodedContact.name
+                    age = String(decodedContact.age)
+                    phoneNumber = decodedContact.phoneNumber
+                }
+            }
             
             
             

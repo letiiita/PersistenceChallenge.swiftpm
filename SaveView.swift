@@ -5,9 +5,9 @@ struct SaveView: View {
     //MARK: MVP - Part I
     @AppStorage("number1") var number1: Int = 0
     
-
+    
     //MARK: Stretch #1 - Part I
-   @AppStorage("url1") var url1 = URL(string: "https://www.apple.com")!
+    @AppStorage("url1") var url1: URL?
     
     
     
@@ -37,8 +37,6 @@ struct SaveView: View {
                 Button("Save") {
                     //MARK: MVP - Part II
                     UserDefaults.standard.set(number2, forKey: "number2")
-                    
-                    
                     
                 }
                 .frame(width: 200, height: 50)
@@ -90,9 +88,10 @@ struct SaveView: View {
                 
                 Button("Save") {
                     //MARK: Stretch #2 - Part I
+                    // SaveView.swift
+                    UserDefaults.standard.set([arrayNumber1, arrayNumber2, arrayNumber3], forKey: "savedDoubleArray")
                     
-
-
+                    
                     
                     
                 }
@@ -112,9 +111,16 @@ struct SaveView: View {
                 .textFieldStyle(.roundedBorder)
                 Button("Save") {
                     //MARK: Stretch #3 - Part II
+                  //  let name = $name
+                  //  let age = $age
+                 //   let phoneNumber = $phone
                     
+                    let contact = Contact(name: name, age: age ?? 0, phoneNumber: phone)
                     
-                    
+                    let encoder = JSONEncoder()
+                    if let encodedData = try? encoder.encode(contact) {
+                        UserDefaults.standard.set(encodedData, forKey: "contactKey")
+                    }
                     
                     
                 }
